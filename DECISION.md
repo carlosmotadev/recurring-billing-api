@@ -1,59 +1,272 @@
-# Architecture Decision Records (ADR) - Recurring Billing Api
+# Architecture Decision Records (ADR) — Recurring Billing API
 
-Este documento registra todas as decisões de arquitetura, padrões de projeto e escolhas tecnológicas adotadas durante a evolução deste sistema de cobrança recorrente.
-
----
-
-## ADR 001: Escolha do Framework Rails em Modo API (`--api`)
-* **Status:** Aceito
-* **Data:** 2026-03
-* **Contexto:** Necessidade de criar um microserviço de cobrança recorrente focado em alta performance de endpoints e desacoplamento do front-end.
-* **Decisão:** Utilização do Ruby on Rails com a flag `--api`.
-* **Justificativa:** Remove middlewares desnecessários de renderização HTML/Views (Asset Pipeline, Session, Cookies), tornando a aplicação mais leve, rápida e aderente aos padrões de APIs RESTful.
+Este documento registra as principais decisões arquiteturais, padrões de projeto e escolhas tecnológicas adotadas durante a evolução da **Recurring Billing API**.
 
 ---
 
-## ADR 002: Suíte de Testes com RSpec, VCR e WebMock
-* **Status:** Aceito
-* **Data:** 2026-03
-* **Contexto:** Garantir a estabilidade e previsibilidade do sistema ao integrar com chamadas externas de pagamento (Stripe API).
-* **Decisão:** Substituir Minitest por RSpec e utilizar VCR + WebMock para interceptar requisições HTTP externas nos testes.
-* **Justificativa:** O RSpec possui sintaxe expressiva ideal para testes BDD. O VCR permite gravar as respostas da API do Stripe em arquivos "cassette" `.yml`, garantindo que a suíte de testes rode de forma rápida, determinística e offline, sem consumir endpoints de teste reais do Stripe a cada execução.
+# ADR 001 — Escolha do Rails em Modo API (`--api`)
+
+**Status:** Aceito
+**Data:** 2026-03
+
+## Contexto
+
+Havia a necessidade de desenvolver um microserviço de cobrança recorrente focado em alta performance, comunicação via APIs REST e desacoplamento da camada de front-end.
+
+## Decisão
+
+Utilizar **Ruby on Rails** em **API Mode** (`rails new --api`).
+
+## Justificativa
+
+* Remove middlewares voltados para renderização HTML.
+* Elimina Asset Pipeline, Sessions e Cookies por padrão.
+* Reduz o consumo de memória.
+* Melhora o desempenho da aplicação.
+* Segue as boas práticas para construção de APIs RESTful.
 
 ---
 
-## ADR 003: Armazenamento de Variáveis Sensíveis com `dotenv-rails`
-* **Status:** Aceito
-* **Data:** 2026-03
-* **Contexto:** Isolar credenciais bancárias e chaves de API (`STRIPE_SECRET_KEY`) fora do controle de versão Git.
-* **Decisão:** Uso da gem `dotenv-rails` alimentando o arquivo `.env` (ignorado no `.gitignore`).
-* **Justificativa:** Atende aos princípios do *12-Factor App* sobre configuração isolada por ambiente.
+# ADR 002 — Suíte de Testes com RSpec, VCR e WebMock
+
+**Status:** Aceito
+**Data:** 2026-03
+
+## Contexto
+
+Garantir estabilidade, previsibilidade e rapidez na execução dos testes envolvendo integrações externas com a Stripe API.
+
+## Decisão
+
+Substituir o **Minitest** por **RSpec** e utilizar **VCR** juntamente com **WebMock**.
+
+## Justificativa
+
+* Sintaxe mais expressiva para testes BDD.
+* Isolamento de chamadas HTTP externas.
+* Execução dos testes sem depender da disponibilidade da Stripe.
+* Redução do tempo de execução da suíte.
+
+As respostas da Stripe são gravadas em arquivos *cassette* (`.yml`) e reutilizadas nas próximas execuções.
 
 ---
 
-## ADR 004: Modelagem de Dados para Assinaturas e Recorrência
-* **Status:** Aceito
-* **Data:** 2026-07
-* **Contexto:** Necessidade de armazenar histórico de faturamento, assinaturas ativas e vínculo seguro com a API de gateway externo.
-* **Decisão:** Modelagem com tabelas dedicadas (`customers`, `plans`, `subscriptions`, `invoices`) mantendo IDs externos do Stripe (`stripe_customer_id`, `stripe_subscription_id`, `stripe_invoice_id`) e enums indexados para status.
-* **Justificativa:** Garante integridade referencial no PostgreSQL, busca performática indexada por tokens externos e rastreabilidade total de faturas geradas por assinatura.
+# ADR 003 — Gerenciamento de Variáveis de Ambiente
+
+**Status:** Aceito
+**Data:** 2026-03
+
+## Contexto
+
+As credenciais da aplicação não devem ficar armazenadas no repositório Git.
+
+## Decisão
+
+Utilizar a gem **dotenv-rails** juntamente com um arquivo `.env`, ignorado pelo Git.
+
+## Justificativa
+
+* Mantém segredos fora do código-fonte.
+* Facilita a configuração entre ambientes.
+* Segue os princípios do **12-Factor App**.
+
+Exemplos de variáveis:
+
+* `STRIPE_SECRET_KEY`
+* `STRIPE_WEBHOOK_SECRET`
+* `REDIS_URL`
 
 ---
 
-## ADR 005: Encapsulamento de APIs Financeiras com Service Objects
-* **Status:** Aceito
-* **Data:** 2026-07
-* **Contexto:** Isolar regras de negócio transacionais e chamadas de API externa de pagamentos (Stripe).
-* **Decisão:** Criação de Service Objects dedicados (`Stripe::CreateSubscriptionService`) retornando `OpenStruct` com o resultado do fluxo.
-* **Justificativa:** 
-  1. **Princípio de Responsabilidade Única (SRP):** Mantém controllers enxutos, focados apenas em receber a requisição HTTP e responder JSON, delegando a complexidade do ciclo financeiro.
-  2. **Facilidade de Testabilidade:** Permite desacoplar chamadas de rede e simular cenários de falha ou erro de cartão de forma independente da interface HTTP.
+# ADR 004 — Modelagem do Domínio de Assinaturas
+
+**Status:** Aceito
+**Data:** 2026-07
+
+## Contexto
+
+Era necessário armazenar clientes, planos, assinaturas e histórico completo de faturamento mantendo sincronização com a Stripe.
+
+## Decisão
+
+Modelagem baseada nas entidades:
+
+* Customers
+* Plans
+* Subscriptions
+* Invoices
+
+Os identificadores externos da Stripe também são persistidos:
+
+* `stripe_customer_id`
+* `stripe_subscription_id`
+* `stripe_invoice_id`
+
+Os estados da aplicação utilizam **Enums** indexados.
+
+## Justificativa
+
+* Integridade referencial no PostgreSQL.
+* Consultas rápidas utilizando índices.
+* Rastreabilidade completa entre banco local e Stripe.
 
 ---
 
-## ADR 006: Processamento Assíncrono de Webhooks com Sidekiq
-* **Status:** Aceito
-* **Data:** 2026-07
-* **Contexto:** Garantir tempo de resposta imediato para os Webhooks do Stripe e resiliência no processamento financeiro.
-* **Decisão:** O controller do Webhook apenas valida a assinatura/payload, responde `200 OK` e delega a regra de negócio para o `StripeWebhookJob` no Sidekiq.
-* **Justificativa:** Previne timeouts HTTP do Stripe, gerencia retentativas automáticas (*retries*) em caso de falha transitória do banco de dados e mantém a API altamente responsiva.
+# ADR 005 — Encapsulamento da Integração com Stripe em Service Objects
+
+**Status:** Aceito
+**Data:** 2026-07
+
+## Contexto
+
+Evitar que regras financeiras e chamadas externas ficassem concentradas nos controllers.
+
+## Decisão
+
+Criar Service Objects dedicados, por exemplo:
+
+```ruby
+Stripe::CreateSubscriptionService
+```
+
+Os serviços retornam objetos contendo o resultado da operação.
+
+## Justificativa
+
+### Single Responsibility Principle (SRP)
+
+Controllers permanecem responsáveis apenas por:
+
+* receber requisições HTTP;
+* validar parâmetros;
+* retornar respostas JSON.
+
+Toda a lógica de negócio permanece isolada na camada de serviços.
+
+### Facilidade de Testes
+
+Permite:
+
+* simular falhas da Stripe;
+* testar cenários de cartão recusado;
+* desacoplar completamente a camada HTTP.
+
+---
+
+# ADR 006 — Processamento Assíncrono de Webhooks
+
+**Status:** Aceito
+**Data:** 2026-07
+
+## Contexto
+
+Os Webhooks da Stripe exigem respostas rápidas para evitar reenvios e timeouts.
+
+## Decisão
+
+O controller do Webhook:
+
+1. valida assinatura e payload;
+2. responde imediatamente com **HTTP 200**;
+3. delega o processamento para um **Sidekiq Job**.
+
+Exemplo:
+
+```ruby
+StripeWebhookJob.perform_async(...)
+```
+
+## Justificativa
+
+* Evita timeout dos Webhooks.
+* Mantém baixa latência.
+* Aproveita o sistema de retries automáticos do Sidekiq.
+* Aumenta a resiliência do processamento financeiro.
+
+---
+
+# ADR 007 — Redis como Infraestrutura para Background Jobs
+
+**Status:** Aceito
+**Data:** 2026-07
+
+## Contexto
+
+O Sidekiq necessita de um armazenamento rápido para filas de processamento.
+
+## Decisão
+
+Utilizar o **Redis** como banco em memória, executando na porta padrão **6379**.
+
+## Justificativa
+
+* Altíssimo throughput.
+* Baixa latência.
+* Baixo consumo de CPU.
+* Solução oficialmente recomendada pelo Sidekiq.
+
+---
+
+# ADR 008 — Documentação da API com Rswag (OpenAPI)
+
+**Status:** Aceito
+**Data:** 2026-07
+
+## Contexto
+
+Disponibilizar documentação sempre sincronizada com a implementação da API.
+
+## Decisão
+
+Utilizar:
+
+* rswag-api
+* rswag-ui
+
+Gerando automaticamente uma especificação **OpenAPI 3.0**.
+
+## Justificativa
+
+A documentação segue a filosofia **Docs as Code**.
+
+As especificações são escritas juntamente com os testes de integração e geradas automaticamente a partir do RSpec, garantindo que a documentação represente fielmente o comportamento da API.
+
+---
+
+# ADR 009 — Middleware de Sessão para Ferramentas Administrativas
+
+**Status:** Aceito
+**Data:** 2026-07
+
+## Contexto
+
+Embora o Rails em modo API seja stateless, o painel web do Sidekiq necessita de suporte a sessões baseadas em cookies.
+
+## Decisão
+
+Adicionar seletivamente os middlewares:
+
+* `ActionDispatch::Cookies`
+* `ActionDispatch::Session::CookieStore`
+
+no arquivo `config/application.rb`.
+
+## Justificativa
+
+Essa abordagem permite utilizar interfaces administrativas, como o **Sidekiq::Web**, sem alterar o comportamento stateless dos endpoints REST da aplicação.
+
+---
+
+# Resumo das Decisões
+
+| ADR     | Decisão                                                      |
+| ------- | ------------------------------------------------------------ |
+| ADR-001 | Rails em modo API                                            |
+| ADR-002 | RSpec + VCR + WebMock                                        |
+| ADR-003 | dotenv-rails para variáveis sensíveis                        |
+| ADR-004 | Modelagem do domínio com entidades dedicadas                 |
+| ADR-005 | Integração com Stripe através de Service Objects             |
+| ADR-006 | Webhooks processados via Sidekiq                             |
+| ADR-007 | Redis como backend de filas                                  |
+| ADR-008 | Documentação OpenAPI com Rswag                               |
+| ADR-009 | Middleware de sessão apenas para ferramentas administrativas |
