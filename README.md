@@ -1,42 +1,223 @@
-# 💳 Recurring Billing API (Stripe + Rails 8 API)
+# 💳 Recurring Billing API
 
-API RESTful robusta e de alta performance para gerenciamento de cobranças recorrentes, assinaturas e faturamento integrado à **Stripe API**, com processamento assíncrono de Webhooks via **Sidekiq** e cobertura total de testes automatizados com **RSpec & VCR**.
+API RESTful de alta performance desenvolvida em **Ruby on Rails 8 (API Mode)** para gerenciamento de cobranças recorrentes e assinaturas, totalmente integrada à **Stripe API**.
 
----
+O projeto conta com:
 
-## 🚀 Tecnologias e Ferramentas
-
-* **Ruby:** 3.x
-* **Ruby on Rails:** 8.x (modo `--api`)
-* **Banco de Dados:** PostgreSQL
-* **Background Jobs & Cache:** Sidekiq & Redis
-* **Gateway de Pagamento:** Stripe API (Gem `stripe`)
-* **Testes Automatizados:** RSpec, VCR, WebMock, Shoulda Matchers
-* **Controle de Configuração:** `dotenv-rails`
+* Processamento assíncrono de Webhooks via **Sidekiq + Redis**
+* Documentação interativa via **Swagger UI**
+* Cobertura completa de testes automatizados com **RSpec + VCR**
 
 ---
 
-## 🏛️ Decisões de Arquitetura (ADRs)
+# 🚀 Arquitetura e Tecnologias
 
-Todas as decisões técnicas, padrões de projeto e escolhas de arquitetura estão documentadas em detalhes no arquivo [`DECISIONS.md`](./DECISIONS.md).
-
-Principais destaques:
-* **ADR 001:** Rails em Modo API (`--api`) para leveza e desacoplamento do front-end.
-* **ADR 002:** Suíte de testes determinística e offline com RSpec + VCR/WebMock.
-* **ADR 005:** Encapsulamento de integrações financeiras via Service Objects (`Stripe::CreateSubscriptionService`).
-* **ADR 006:** Processamento assíncrono e resiliente de Webhooks do Stripe utilizando Sidekiq.
+| Categoria                | Tecnologia                            |
+| ------------------------ | ------------------------------------- |
+| Linguagem                | Ruby 3.x                              |
+| Framework                | Ruby on Rails 8.x (`--api`)           |
+| Banco de Dados           | PostgreSQL                            |
+| Processamento Assíncrono | Sidekiq + Redis                       |
+| Gateway de Pagamento     | Stripe API (`stripe gem`)             |
+| Documentação             | Rswag / OpenAPI 3.0 (Swagger UI)      |
+| Testes                   | RSpec, VCR, WebMock, Shoulda Matchers |
 
 ---
 
-## 🛠️ Como Executar o Projeto Localmente
+# 📍 Endpoints e Painéis (Ambiente Local)
 
-### Pré-requisitos
-* Ruby instalados
-* PostgreSQL rodando
-* Redis rodando
+Com a aplicação rodando através do `rails server`, os seguintes serviços estarão disponíveis:
 
-### 1. Clonar o Repositório e Instalar Dependências
+| Serviço           | URL                            | Descrição                                               |
+| ----------------- | ------------------------------ | ------------------------------------------------------- |
+| Swagger UI        | http://localhost:3000/api-docs | Documentação interativa para testar os endpoints da API |
+| Sidekiq Dashboard | http://localhost:3000/sidekiq  | Monitoramento das filas e processamento de jobs         |
+| Healthcheck       | http://localhost:3000/up       | Status da aplicação                                     |
+
+---
+
+# 🛠️ Como Rodar o Projeto Localmente
+
+## 1. Pré-requisitos
+
+Certifique-se de possuir instalado:
+
+* Ruby 3.x
+* PostgreSQL
+* Redis Server
+
+---
+
+## 2. Clonar o Repositório e Instalar Dependências
+
 ```bash
-git clone [https://github.com/seu-usuario/recurring-billing-api.git](https://github.com/seu-usuario/recurring-billing-api.git)
+git clone https://github.com/seu-usuario/recurring-billing-api.git
+
 cd recurring-billing-api
+
 bundle install
+```
+
+---
+
+# 3. Configurar Variáveis de Ambiente
+
+Crie o arquivo `.env` baseado no exemplo:
+
+```bash
+cp .env.example .env
+```
+
+Configure as variáveis necessárias:
+
+```env
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+REDIS_URL=redis://localhost:6379/0
+```
+
+---
+
+# 4. Configurar Banco de Dados
+
+Crie o banco e execute as migrations:
+
+```bash
+rails db:create db:migrate db:seed
+```
+
+Caso esteja utilizando PostgreSQL local, confirme as configurações em:
+
+```bash
+config/database.yml
+```
+
+Exemplo:
+
+```yaml
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: recurring_billing_api_development
+  username: seu_usuario
+  password: sua_senha
+  host: localhost
+```
+
+---
+
+# 5. Iniciar o Redis
+
+Verifique se o Redis está executando:
+
+```bash
+sudo service redis-server start
+```
+
+Teste a conexão:
+
+```bash
+redis-cli ping
+```
+
+Resposta esperada:
+
+```text
+PONG
+```
+
+---
+
+# 6. Iniciar os Serviços
+
+Execute cada serviço em um terminal separado.
+
+## Terminal 1 — Servidor Rails
+
+```bash
+rails server
+```
+
+---
+
+## Terminal 2 — Worker Sidekiq
+
+```bash
+bundle exec sidekiq
+```
+
+---
+
+# 🧪 Testes Automatizados
+
+A aplicação utiliza:
+
+* RSpec para testes
+* VCR para interceptação de chamadas externas
+* WebMock para controle das requisições HTTP
+
+Execute:
+
+```bash
+bundle exec rspec
+```
+
+---
+
+# 📚 Atualizar Documentação OpenAPI (Swagger)
+
+Caso alguma spec de documentação seja alterada, gere novamente o arquivo Swagger:
+
+```bash
+SWAGGER_DRY_RUN=0 RAILS_ENV=test bundle exec rspec \
+spec/requests/api/v1/subscriptions_swagger_spec.rb \
+--format Rswag::Specs::SwaggerFormatter
+```
+
+---
+
+# 📌 Diferenciais Arquiteturais
+
+## Webhooks Seguros e Assíncronos
+
+Processamento idempotente de eventos Stripe utilizando Sidekiq.
+
+Eventos suportados incluem:
+
+* `invoice.payment_succeeded`
+* `customer.subscription.deleted`
+
+---
+
+## Isolamento com VCR
+
+As chamadas reais para a Stripe API são gravadas em cassettes, permitindo:
+
+* Testes determinísticos
+* Execução rápida
+* Ausência de dependência externa durante a suíte
+
+---
+
+## Service Objects Pattern
+
+As integrações externas ficam isoladas em:
+
+```
+app/services/stripe/
+```
+
+Mantendo:
+
+* Controllers enxutos
+* Regras de negócio organizadas
+* Código mais fácil de testar e manter
+
+---
+
+
+---
+
+# 📄 Licença
+
+Este projeto está em desenvolvimento e destinado a fins de estudo e demonstração de arquitetura backend com Ruby on Rails.
