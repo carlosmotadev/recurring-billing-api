@@ -1,4 +1,13 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  # Swagger UI Documentation
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
+
+  # Sidekiq Web Dashboard (em dev)
+  mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
+
   namespace :api do
     namespace :v1 do
       resources :customers, only: [:create, :show]
@@ -6,11 +15,9 @@ Rails.application.routes.draw do
       resources :subscriptions, only: [:create, :show, :destroy]
       resources :invoices, only: [:index, :show]
 
-      # Endpoint para recepção de eventos do Stripe Webhook
       post 'webhooks/stripe', to: 'webhooks#stripe'
     end
   end
 
-  # Healthcheck
   get "up" => "rails/health#show", as: :rails_health_check
 end

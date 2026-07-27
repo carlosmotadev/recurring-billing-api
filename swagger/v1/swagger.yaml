@@ -1,0 +1,42 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/subscriptions":
+    post:
+      summary: Cria uma nova assinatura recorrente
+      tags:
+      - Subscriptions
+      parameters: []
+      responses:
+        '201':
+          description: Assinatura criada com sucesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subscription:
+                  type: object
+                  properties:
+                    customer_id:
+                      type: integer
+                      example: 1
+                    plan_id:
+                      type: integer
+                      example: 2
+                    payment_method_id:
+                      type: string
+                      example: tok_visa
+                  required:
+                  - customer_id
+                  - plan_id
+                  - payment_method_id
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

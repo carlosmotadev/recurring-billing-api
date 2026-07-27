@@ -40,5 +40,13 @@ module RecurringBillingApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Define o Sidekiq como o processador de ActiveJob
+    config.active_job.queue_adapter = :sidekiq
+
+    # --- HABILITA MIDDLEWARES PARA O SIDEKIQ::WEB ---
+    # Necessário para gerenciar a sessão que o Sidekiq Web exige
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: '_recurring_billing_session'
   end
 end

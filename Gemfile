@@ -44,6 +44,9 @@ gem 'stripe'
 # Background Jobs para Webhooks
 gem 'sidekiq'
 
+# Background Jobs & Cache
+gem 'redis', '~> 5.0'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -61,6 +64,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0'
   gem 'factory_bot_rails'
   gem 'faker'
+
+  gem 'rswag'
 end
 
 group :test do
