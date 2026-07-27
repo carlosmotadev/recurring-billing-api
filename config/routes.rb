@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      resources :customers, only: [:create, :show]
+      resources :plans, only: [:index, :create, :show]
+      resources :subscriptions, only: [:create, :show, :destroy]
+      resources :invoices, only: [:index, :show]
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+      # Endpoint para recepção de eventos do Stripe Webhook
+      post 'webhooks/stripe', to: 'webhooks#stripe'
+    end
+  end
+
+  # Healthcheck
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
