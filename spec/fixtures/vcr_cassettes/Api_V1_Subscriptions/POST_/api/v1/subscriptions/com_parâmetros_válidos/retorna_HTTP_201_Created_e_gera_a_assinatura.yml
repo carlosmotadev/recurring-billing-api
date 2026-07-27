@@ -1,0 +1,542 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: UTF-8
+      string: email=carlos.api%40example.com&name=Carlos+Mota
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/19.3.1
+      Authorization:
+      - Bearer <STRIPE_SECRET_KEY>
+      Idempotency-Key:
+      - b890df3d-a27f-42e3-b438-0edb3b8945de
+      Stripe-Version:
+      - 2026-06-24.dahlia
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"19.3.1","lang":"ruby","lang_version":"3.4.10 p104 (2026-06-30)","engine":"ruby","platform":"x86_64-linux","telemetry_id":"b093af96521ce6497940bf4e16652c48"}'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 27 Jul 2026 17:09:56 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '671'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, HEAD, PUT, PATCH, POST, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src
+        'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=ELnE-1-SS5xfaJMSSn1WC0NikmupuvUjeqxWv1OlD913MbLMKd2AkvaxtwN4yujor3Pp1tsf8RIp-Aiv;
+        report-to csp
+      Idempotency-Key:
+      - b890df3d-a27f-42e3-b438-0edb3b8945de
+      Original-Request:
+      - req_x4Ezdv46hQ7i7K
+      Report-To:
+      - '{"group":"csp","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/csp-report-v2?q=ELnE-1-SS5xfaJMSSn1WC0NikmupuvUjeqxWv1OlD913MbLMKd2AkvaxtwN4yujor3Pp1tsf8RIp-Aiv&t=1"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - csp="https://q.stripe.com/csp-report-v2?q=ELnE-1-SS5xfaJMSSn1WC0NikmupuvUjeqxWv1OlD913MbLMKd2AkvaxtwN4yujor3Pp1tsf8RIp-Aiv&t=1"
+      Request-Id:
+      - req_x4Ezdv46hQ7i7K
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - 2026-06-24.dahlia
+      Vary:
+      - Origin
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      X-Wc:
+      - 3c3
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "id": "cus_UxndrY6xUHUnkA",
+          "object": "customer",
+          "address": null,
+          "balance": 0,
+          "created": 1785172196,
+          "currency": null,
+          "customer_account": null,
+          "default_source": null,
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "carlos.api@example.com",
+          "invoice_prefix": "ZIYGOKC0",
+          "invoice_settings": {
+            "custom_fields": null,
+            "default_payment_method": null,
+            "footer": null,
+            "rendering_options": null
+          },
+          "livemode": false,
+          "metadata": {},
+          "name": "Carlos Mota",
+          "next_invoice_sequence": 1,
+          "phone": null,
+          "preferred_locales": [],
+          "shipping": null,
+          "tax_exempt": "none",
+          "test_clock": null
+        }
+  recorded_at: Mon, 27 Jul 2026 17:09:56 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers/cus_UxndrY6xUHUnkA/sources
+    body:
+      encoding: UTF-8
+      string: source=tok_visa
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/19.3.1
+      Authorization:
+      - Bearer <STRIPE_SECRET_KEY>
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_x4Ezdv46hQ7i7K","request_duration_ms":600}}'
+      Idempotency-Key:
+      - faf74efc-44e9-4d39-bdd7-edf7d4cd7eb6
+      Stripe-Version:
+      - 2026-06-24.dahlia
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"19.3.1","lang":"ruby","lang_version":"3.4.10 p104 (2026-06-30)","engine":"ruby","platform":"x86_64-linux","telemetry_id":"b093af96521ce6497940bf4e16652c48"}'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 27 Jul 2026 17:09:57 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '701'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, HEAD, PUT, PATCH, POST, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src
+        'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu;
+        report-to csp
+      Idempotency-Key:
+      - faf74efc-44e9-4d39-bdd7-edf7d4cd7eb6
+      Original-Request:
+      - req_m7F7OAEozSYc5Z
+      Report-To:
+      - '{"group":"csp","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/csp-report-v2?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu&t=1"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - csp="https://q.stripe.com/csp-report-v2?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu&t=1"
+      Request-Id:
+      - req_m7F7OAEozSYc5Z
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - 2026-06-24.dahlia
+      Vary:
+      - Origin
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      X-Wc:
+      - 3c3
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "id": "card_1Txs2KHYbTnxB0SPExYBQtae",
+          "object": "card",
+          "address_city": null,
+          "address_country": null,
+          "address_line1": null,
+          "address_line1_check": null,
+          "address_line2": null,
+          "address_state": null,
+          "address_zip": null,
+          "address_zip_check": null,
+          "allow_redisplay": "unspecified",
+          "brand": "Visa",
+          "country": "US",
+          "customer": "cus_UxndrY6xUHUnkA",
+          "cvc_check": "pass",
+          "dynamic_last4": null,
+          "email": null,
+          "exp_month": 7,
+          "exp_year": 2027,
+          "fingerprint": "lnmL7Qi8GHwQvy9T",
+          "funding": "credit",
+          "last4": "4242",
+          "metadata": {},
+          "name": null,
+          "phone": null,
+          "regulated_status": "unregulated",
+          "tokenization_method": null,
+          "wallet": null
+        }
+  recorded_at: Mon, 27 Jul 2026 17:09:57 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/products
+    body:
+      encoding: UTF-8
+      string: name=Plano+Pro
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/19.3.1
+      Authorization:
+      - Bearer <STRIPE_SECRET_KEY>
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_m7F7OAEozSYc5Z","request_duration_ms":849}}'
+      Idempotency-Key:
+      - dd0b18ca-bf74-48e5-b7fd-0d6c723e7371
+      Stripe-Version:
+      - 2026-06-24.dahlia
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"19.3.1","lang":"ruby","lang_version":"3.4.10 p104 (2026-06-30)","engine":"ruby","platform":"x86_64-linux","telemetry_id":"b093af96521ce6497940bf4e16652c48"}'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 27 Jul 2026 17:09:57 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '482'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, HEAD, PUT, PATCH, POST, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src
+        'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu;
+        report-to csp
+      Idempotency-Key:
+      - dd0b18ca-bf74-48e5-b7fd-0d6c723e7371
+      Original-Request:
+      - req_Rs8tXs1oNXbecg
+      Report-To:
+      - '{"group":"csp","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/csp-report-v2?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu&t=1"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - csp="https://q.stripe.com/csp-report-v2?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu&t=1"
+      Request-Id:
+      - req_Rs8tXs1oNXbecg
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - 2026-06-24.dahlia
+      Vary:
+      - Origin
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      X-Wc:
+      - 3c3
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "id": "prod_UxndAcs91Sq9Dz",
+          "object": "product",
+          "active": true,
+          "attributes": [],
+          "created": 1785172197,
+          "default_price": null,
+          "description": null,
+          "images": [],
+          "livemode": false,
+          "marketing_features": [],
+          "metadata": {},
+          "name": "Plano Pro",
+          "package_dimensions": null,
+          "shippable": null,
+          "statement_descriptor": null,
+          "tax_code": null,
+          "tax_details": null,
+          "type": "service",
+          "unit_label": null,
+          "updated": 1785172197,
+          "url": null
+        }
+  recorded_at: Mon, 27 Jul 2026 17:09:57 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/prices
+    body:
+      encoding: UTF-8
+      string: unit_amount=9900&currency=brl&recurring[interval]=month&product=prod_UxndAcs91Sq9Dz
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/19.3.1
+      Authorization:
+      - Bearer <STRIPE_SECRET_KEY>
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_Rs8tXs1oNXbecg","request_duration_ms":293}}'
+      Idempotency-Key:
+      - c4b1a06b-09ef-4184-bbd8-dcf7bc9f9a54
+      Stripe-Version:
+      - 2026-06-24.dahlia
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"19.3.1","lang":"ruby","lang_version":"3.4.10 p104 (2026-06-30)","engine":"ruby","platform":"x86_64-linux","telemetry_id":"b093af96521ce6497940bf4e16652c48"}'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 27 Jul 2026 17:09:57 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '623'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, HEAD, PUT, PATCH, POST, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src
+        'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu;
+        report-to csp
+      Idempotency-Key:
+      - c4b1a06b-09ef-4184-bbd8-dcf7bc9f9a54
+      Original-Request:
+      - req_t4bCYy2dKIU7lU
+      Report-To:
+      - '{"group":"csp","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/csp-report-v2?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu&t=1"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - csp="https://q.stripe.com/csp-report-v2?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu&t=1"
+      Request-Id:
+      - req_t4bCYy2dKIU7lU
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - 2026-06-24.dahlia
+      Vary:
+      - Origin
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      X-Wc:
+      - 3c3
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "id": "price_1Txs2LHYbTnxB0SPYqPHMkoq",
+          "object": "price",
+          "active": true,
+          "billing_scheme": "per_unit",
+          "created": 1785172197,
+          "currency": "brl",
+          "custom_unit_amount": null,
+          "livemode": false,
+          "lookup_key": null,
+          "metadata": {},
+          "nickname": null,
+          "product": "prod_UxndAcs91Sq9Dz",
+          "recurring": {
+            "interval": "month",
+            "interval_count": 1,
+            "meter": null,
+            "trial_period_days": null,
+            "usage_type": "licensed"
+          },
+          "tax_behavior": "unspecified",
+          "tiers_mode": null,
+          "transform_quantity": null,
+          "type": "recurring",
+          "unit_amount": 9900,
+          "unit_amount_decimal": "9900"
+        }
+  recorded_at: Mon, 27 Jul 2026 17:09:57 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/subscriptions
+    body:
+      encoding: UTF-8
+      string: customer=cus_UxndrY6xUHUnkA&items[0][price]=price_1Txs2LHYbTnxB0SPYqPHMkoq&expand[0]=latest_invoice.payment_intent
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/19.3.1
+      Authorization:
+      - Bearer <STRIPE_SECRET_KEY>
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_t4bCYy2dKIU7lU","request_duration_ms":296}}'
+      Idempotency-Key:
+      - 4bcf3895-1b18-4080-99e6-4659784e216c
+      Stripe-Version:
+      - 2026-06-24.dahlia
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"19.3.1","lang":"ruby","lang_version":"3.4.10 p104 (2026-06-30)","engine":"ruby","platform":"x86_64-linux","telemetry_id":"b093af96521ce6497940bf4e16652c48"}'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 27 Jul 2026 17:10:00 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '9138'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, HEAD, PUT, PATCH, POST, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src
+        'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu;
+        report-to csp
+      Idempotency-Key:
+      - 4bcf3895-1b18-4080-99e6-4659784e216c
+      Original-Request:
+      - req_bCJQ43lFu0gprY
+      Report-To:
+      - '{"group":"csp","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/csp-report-v2?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu&t=1"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - csp="https://q.stripe.com/csp-report-v2?q=ZG8E2QRoExG8E9ofP5CWzkm_RLeClOXQgErjU1FHLTbGUhBxtV6nRYXLBnXM0mK4YAuckqCzx00VUqEu&t=1"
+      Request-Id:
+      - req_bCJQ43lFu0gprY
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - 2026-06-24.dahlia
+      Vary:
+      - Origin
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      X-Wc:
+      - 3c3
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJpZCI6ICJzdWJfMVR4czJNSFliVG54QjBTUG1HV2RvMUJ2IiwKICAib2JqZWN0IjogInN1YnNjcmlwdGlvbiIsCiAgImFwcGxpY2F0aW9uIjogbnVsbCwKICAiYXBwbGljYXRpb25fZmVlX3BlcmNlbnQiOiBudWxsLAogICJhdXRvbWF0aWNfdGF4IjogewogICAgImRpc2FibGVkX3JlYXNvbiI6IG51bGwsCiAgICAiZW5hYmxlZCI6IGZhbHNlLAogICAgImxpYWJpbGl0eSI6IG51bGwKICB9LAogICJiaWxsaW5nX2N5Y2xlX2FuY2hvciI6IDE3ODUxNzIxOTgsCiAgImJpbGxpbmdfY3ljbGVfYW5jaG9yX2NvbmZpZyI6IG51bGwsCiAgImJpbGxpbmdfbW9kZSI6IHsKICAgICJmbGV4aWJsZSI6IHsKICAgICAgInByb3JhdGlvbl9kaXNjb3VudHMiOiAiaW5jbHVkZWQiCiAgICB9LAogICAgInR5cGUiOiAiZmxleGlibGUiLAogICAgInVwZGF0ZWRfYXQiOiAxNzg1MTcyMTk4CiAgfSwKICAiYmlsbGluZ19zY2hlZHVsZXMiOiBbXSwKICAiYmlsbGluZ190aHJlc2hvbGRzIjogbnVsbCwKICAiY2FuY2VsX2F0IjogbnVsbCwKICAiY2FuY2VsX2F0X3BlcmlvZF9lbmQiOiBmYWxzZSwKICAiY2FuY2VsZWRfYXQiOiBudWxsLAogICJjYW5jZWxsYXRpb25fZGV0YWlscyI6IHsKICAgICJjb21tZW50IjogbnVsbCwKICAgICJmZWVkYmFjayI6IG51bGwsCiAgICAicmVhc29uIjogbnVsbAogIH0sCiAgImNvbGxlY3Rpb25fbWV0aG9kIjogImNoYXJnZV9hdXRvbWF0aWNhbGx5IiwKICAiY3JlYXRlZCI6IDE3ODUxNzIxOTgsCiAgImN1cnJlbmN5IjogImJybCIsCiAgImN1c3RvbWVyIjogImN1c19VeG5kclk2eFVIVW5rQSIsCiAgImN1c3RvbWVyX2FjY291bnQiOiBudWxsLAogICJkYXlzX3VudGlsX2R1ZSI6IG51bGwsCiAgImRlZmF1bHRfcGF5bWVudF9tZXRob2QiOiBudWxsLAogICJkZWZhdWx0X3NvdXJjZSI6IG51bGwsCiAgImRlZmF1bHRfdGF4X3JhdGVzIjogW10sCiAgImRlc2NyaXB0aW9uIjogbnVsbCwKICAiZGlzY291bnRzIjogW10sCiAgImVuZGVkX2F0IjogbnVsbCwKICAiaW52b2ljZV9zZXR0aW5ncyI6IHsKICAgICJhY2NvdW50X3RheF9pZHMiOiBudWxsLAogICAgImN1c3RvbV9maWVsZHMiOiBudWxsLAogICAgImRlc2NyaXB0aW9uIjogbnVsbCwKICAgICJmb290ZXIiOiBudWxsLAogICAgImlzc3VlciI6IHsKICAgICAgInR5cGUiOiAic2VsZiIKICAgIH0KICB9LAogICJpdGVtcyI6IHsKICAgICJvYmplY3QiOiAibGlzdCIsCiAgICAiZGF0YSI6IFsKICAgICAgewogICAgICAgICJpZCI6ICJzaV9VeG5kMVpRTmppT0ZJdCIsCiAgICAgICAgIm9iamVjdCI6ICJzdWJzY3JpcHRpb25faXRlbSIsCiAgICAgICAgImJpbGxpbmdfdGhyZXNob2xkcyI6IG51bGwsCiAgICAgICAgImNyZWF0ZWQiOiAxNzg1MTcyMTk4LAogICAgICAgICJjdXJyZW50X3BlcmlvZF9lbmQiOiAxNzg3ODUwNTk4LAogICAgICAgICJjdXJyZW50X3BlcmlvZF9zdGFydCI6IDE3ODUxNzIxOTgsCiAgICAgICAgImRpc2NvdW50cyI6IFtdLAogICAgICAgICJtZXRhZGF0YSI6IHt9LAogICAgICAgICJwbGFuIjogewogICAgICAgICAgImlkIjogInByaWNlXzFUeHMyTEhZYlRueEIwU1BZcVBITWtvcSIsCiAgICAgICAgICAib2JqZWN0IjogInBsYW4iLAogICAgICAgICAgImFjdGl2ZSI6IHRydWUsCiAgICAgICAgICAiYW1vdW50IjogOTkwMCwKICAgICAgICAgICJhbW91bnRfZGVjaW1hbCI6ICI5OTAwIiwKICAgICAgICAgICJiaWxsaW5nX3NjaGVtZSI6ICJwZXJfdW5pdCIsCiAgICAgICAgICAiY3JlYXRlZCI6IDE3ODUxNzIxOTcsCiAgICAgICAgICAiY3VycmVuY3kiOiAiYnJsIiwKICAgICAgICAgICJpbnRlcnZhbCI6ICJtb250aCIsCiAgICAgICAgICAiaW50ZXJ2YWxfY291bnQiOiAxLAogICAgICAgICAgImxpdmVtb2RlIjogZmFsc2UsCiAgICAgICAgICAibWV0YWRhdGEiOiB7fSwKICAgICAgICAgICJtZXRlciI6IG51bGwsCiAgICAgICAgICAibmlja25hbWUiOiBudWxsLAogICAgICAgICAgInByb2R1Y3QiOiAicHJvZF9VeG5kQWNzOTFTcTlEeiIsCiAgICAgICAgICAidGllcnNfbW9kZSI6IG51bGwsCiAgICAgICAgICAidHJhbnNmb3JtX3VzYWdlIjogbnVsbCwKICAgICAgICAgICJ0cmlhbF9wZXJpb2RfZGF5cyI6IG51bGwsCiAgICAgICAgICAidXNhZ2VfdHlwZSI6ICJsaWNlbnNlZCIKICAgICAgICB9LAogICAgICAgICJwcmljZSI6IHsKICAgICAgICAgICJpZCI6ICJwcmljZV8xVHhzMkxIWWJUbnhCMFNQWXFQSE1rb3EiLAogICAgICAgICAgIm9iamVjdCI6ICJwcmljZSIsCiAgICAgICAgICAiYWN0aXZlIjogdHJ1ZSwKICAgICAgICAgICJiaWxsaW5nX3NjaGVtZSI6ICJwZXJfdW5pdCIsCiAgICAgICAgICAiY3JlYXRlZCI6IDE3ODUxNzIxOTcsCiAgICAgICAgICAiY3VycmVuY3kiOiAiYnJsIiwKICAgICAgICAgICJjdXN0b21fdW5pdF9hbW91bnQiOiBudWxsLAogICAgICAgICAgImxpdmVtb2RlIjogZmFsc2UsCiAgICAgICAgICAibG9va3VwX2tleSI6IG51bGwsCiAgICAgICAgICAibWV0YWRhdGEiOiB7fSwKICAgICAgICAgICJuaWNrbmFtZSI6IG51bGwsCiAgICAgICAgICAicHJvZHVjdCI6ICJwcm9kX1V4bmRBY3M5MVNxOUR6IiwKICAgICAgICAgICJyZWN1cnJpbmciOiB7CiAgICAgICAgICAgICJpbnRlcnZhbCI6ICJtb250aCIsCiAgICAgICAgICAgICJpbnRlcnZhbF9jb3VudCI6IDEsCiAgICAgICAgICAgICJtZXRlciI6IG51bGwsCiAgICAgICAgICAgICJ0cmlhbF9wZXJpb2RfZGF5cyI6IG51bGwsCiAgICAgICAgICAgICJ1c2FnZV90eXBlIjogImxpY2Vuc2VkIgogICAgICAgICAgfSwKICAgICAgICAgICJ0YXhfYmVoYXZpb3IiOiAidW5zcGVjaWZpZWQiLAogICAgICAgICAgInRpZXJzX21vZGUiOiBudWxsLAogICAgICAgICAgInRyYW5zZm9ybV9xdWFudGl0eSI6IG51bGwsCiAgICAgICAgICAidHlwZSI6ICJyZWN1cnJpbmciLAogICAgICAgICAgInVuaXRfYW1vdW50IjogOTkwMCwKICAgICAgICAgICJ1bml0X2Ftb3VudF9kZWNpbWFsIjogIjk5MDAiCiAgICAgICAgfSwKICAgICAgICAicXVhbnRpdHkiOiAxLAogICAgICAgICJzdWJzY3JpcHRpb24iOiAic3ViXzFUeHMyTUhZYlRueEIwU1BtR1dkbzFCdiIsCiAgICAgICAgInRheF9yYXRlcyI6IFtdCiAgICAgIH0KICAgIF0sCiAgICAiaGFzX21vcmUiOiBmYWxzZSwKICAgICJ0b3RhbF9jb3VudCI6IDEsCiAgICAidXJsIjogIi92MS9zdWJzY3JpcHRpb25faXRlbXM/c3Vic2NyaXB0aW9uPXN1Yl8xVHhzMk1IWWJUbnhCMFNQbUdXZG8xQnYiCiAgfSwKICAibGF0ZXN0X2ludm9pY2UiOiB7CiAgICAiaWQiOiAiaW5fMVR4czJNSFliVG54QjBTUEp5dlNudXpkIiwKICAgICJvYmplY3QiOiAiaW52b2ljZSIsCiAgICAiYWNjb3VudF9jb3VudHJ5IjogIkJSIiwKICAgICJhY2NvdW50X25hbWUiOiBudWxsLAogICAgImFjY291bnRfdGF4X2lkcyI6IG51bGwsCiAgICAiYW1vdW50X2R1ZSI6IDk5MDAsCiAgICAiYW1vdW50X292ZXJwYWlkIjogMCwKICAgICJhbW91bnRfcGFpZCI6IDk5MDAsCiAgICAiYW1vdW50X3JlbWFpbmluZyI6IDAsCiAgICAiYW1vdW50X3NoaXBwaW5nIjogMCwKICAgICJhcHBsaWNhdGlvbiI6IG51bGwsCiAgICAiYXR0ZW1wdF9jb3VudCI6IDEsCiAgICAiYXR0ZW1wdGVkIjogdHJ1ZSwKICAgICJhdXRvX2FkdmFuY2UiOiBmYWxzZSwKICAgICJhdXRvbWF0aWNfdGF4IjogewogICAgICAiZGlzYWJsZWRfcmVhc29uIjogbnVsbCwKICAgICAgImVuYWJsZWQiOiBmYWxzZSwKICAgICAgImxpYWJpbGl0eSI6IG51bGwsCiAgICAgICJwcm92aWRlciI6IG51bGwsCiAgICAgICJzdGF0dXMiOiBudWxsCiAgICB9LAogICAgImF1dG9tYXRpY2FsbHlfZmluYWxpemVzX2F0IjogbnVsbCwKICAgICJiaWxsaW5nX3JlYXNvbiI6ICJzdWJzY3JpcHRpb25fY3JlYXRlIiwKICAgICJjb2xsZWN0aW9uX21ldGhvZCI6ICJjaGFyZ2VfYXV0b21hdGljYWxseSIsCiAgICAiY3JlYXRlZCI6IDE3ODUxNzIxOTgsCiAgICAiY3VycmVuY3kiOiAiYnJsIiwKICAgICJjdXN0b21fZmllbGRzIjogbnVsbCwKICAgICJjdXN0b21lciI6ICJjdXNfVXhuZHJZNnhVSFVua0EiLAogICAgImN1c3RvbWVyX2FjY291bnQiOiBudWxsLAogICAgImN1c3RvbWVyX2FkZHJlc3MiOiBudWxsLAogICAgImN1c3RvbWVyX2VtYWlsIjogImNhcmxvcy5hcGlAZXhhbXBsZS5jb20iLAogICAgImN1c3RvbWVyX25hbWUiOiAiQ2FybG9zIE1vdGEiLAogICAgImN1c3RvbWVyX3Bob25lIjogbnVsbCwKICAgICJjdXN0b21lcl9zaGlwcGluZyI6IG51bGwsCiAgICAiY3VzdG9tZXJfdGF4X2V4ZW1wdCI6ICJub25lIiwKICAgICJjdXN0b21lcl90YXhfaWRzIjogW10sCiAgICAiZGVmYXVsdF9wYXltZW50X21ldGhvZCI6IG51bGwsCiAgICAiZGVmYXVsdF9zb3VyY2UiOiBudWxsLAogICAgImRlZmF1bHRfdGF4X3JhdGVzIjogW10sCiAgICAiZGVzY3JpcHRpb24iOiBudWxsLAogICAgImRpc2NvdW50cyI6IFtdLAogICAgImR1ZV9kYXRlIjogbnVsbCwKICAgICJlZmZlY3RpdmVfYXQiOiAxNzg1MTcyMTk4LAogICAgImVuZGluZ19iYWxhbmNlIjogMCwKICAgICJmb290ZXIiOiBudWxsLAogICAgImZyb21faW52b2ljZSI6IG51bGwsCiAgICAiaG9zdGVkX2ludm9pY2VfdXJsIjogImh0dHBzOi8vaW52b2ljZS5zdHJpcGUuY29tL2kvYWNjdF8xTnNrdUtIWWJUbnhCMFNQL3Rlc3RfWVdOamRGOHhUbk5yZFV0SVdXSlVibmhDTUZOUUxGOVZlRzVrZEVweldXeHRXVUZyT0RadVduUm5lRVJxVm5oVFlYUjFOSGN3TERFM05UY3hNekF3TUEwMjAwYTZPRE13d2o/cz1hcCIsCiAgICAiaW52b2ljZV9wZGYiOiAiaHR0cHM6Ly9wYXkuc3RyaXBlLmNvbS9pbnZvaWNlL2FjY3RfMU5za3VLSFliVG54QjBTUC90ZXN0X1lXTmpkRjh4VG5OcmRVdElXV0pVYm5oQ01GTlFMRjlWZUc1a2RFcHpXV3h0V1VGck9EWnVXblJuZUVScVZuaFRZWFIxTkhjd0xERTNOVGN4TXpBd01BMDIwMGE2T0RNd3dqL3BkZj9zPWFwIiwKICAgICJpc3N1ZXIiOiB7CiAgICAgICJ0eXBlIjogInNlbGYiCiAgICB9LAogICAgImxhc3RfZmluYWxpemF0aW9uX2Vycm9yIjogbnVsbCwKICAgICJsYXRlc3RfcmV2aXNpb24iOiBudWxsLAogICAgImxpbmVzIjogewogICAgICAib2JqZWN0IjogImxpc3QiLAogICAgICAiZGF0YSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiaWxfMVR4czJNSFliVG54QjBTUGkxcVJwUXBpIiwKICAgICAgICAgICJvYmplY3QiOiAibGluZV9pdGVtIiwKICAgICAgICAgICJhbW91bnQiOiA5OTAwLAogICAgICAgICAgImN1cnJlbmN5IjogImJybCIsCiAgICAgICAgICAiZGVzY3JpcHRpb24iOiAiMSDDlyBQbGFubyBQcm8gKGF0IFIkIDk5LjAwIC8gbW9udGgpIiwKICAgICAgICAgICJkaXNjb3VudF9hbW91bnRzIjogW10sCiAgICAgICAgICAiZGlzY291bnRhYmxlIjogdHJ1ZSwKICAgICAgICAgICJkaXNjb3VudHMiOiBbXSwKICAgICAgICAgICJpbnZvaWNlIjogImluXzFUeHMyTUhZYlRueEIwU1BKeXZTbnV6ZCIsCiAgICAgICAgICAibGl2ZW1vZGUiOiBmYWxzZSwKICAgICAgICAgICJtZXRhZGF0YSI6IHt9LAogICAgICAgICAgInBhcmVudCI6IHsKICAgICAgICAgICAgImludm9pY2VfaXRlbV9kZXRhaWxzIjogbnVsbCwKICAgICAgICAgICAgInN1YnNjcmlwdGlvbl9pdGVtX2RldGFpbHMiOiB7CiAgICAgICAgICAgICAgImludm9pY2VfaXRlbSI6IG51bGwsCiAgICAgICAgICAgICAgInByb3JhdGlvbiI6IGZhbHNlLAogICAgICAgICAgICAgICJwcm9yYXRpb25fZGV0YWlscyI6IHsKICAgICAgICAgICAgICAgICJjcmVkaXRlZF9pdGVtcyI6IG51bGwKICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICJzdWJzY3JpcHRpb24iOiAic3ViXzFUeHMyTUhZYlRueEIwU1BtR1dkbzFCdiIsCiAgICAgICAgICAgICAgInN1YnNjcmlwdGlvbl9pdGVtIjogInNpX1V4bmQxWlFOamlPRkl0IgogICAgICAgICAgICB9LAogICAgICAgICAgICAidHlwZSI6ICJzdWJzY3JpcHRpb25faXRlbV9kZXRhaWxzIgogICAgICAgICAgfSwKICAgICAgICAgICJwZXJpb2QiOiB7CiAgICAgICAgICAgICJlbmQiOiAxNzg3ODUwNTk4LAogICAgICAgICAgICAic3RhcnQiOiAxNzg1MTcyMTk4CiAgICAgICAgICB9LAogICAgICAgICAgInByZXRheF9jcmVkaXRfYW1vdW50cyI6IFtdLAogICAgICAgICAgInByaWNpbmciOiB7CiAgICAgICAgICAgICJwcmljZV9kZXRhaWxzIjogewogICAgICAgICAgICAgICJwcmljZSI6ICJwcmljZV8xVHhzMkxIWWJUbnhCMFNQWXFQSE1rb3EiLAogICAgICAgICAgICAgICJwcm9kdWN0IjogInByb2RfVXhuZEFjczkxU3E5RHoiCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgICJ0eXBlIjogInByaWNlX2RldGFpbHMiLAogICAgICAgICAgICAidW5pdF9hbW91bnRfZGVjaW1hbCI6ICI5OTAwIgogICAgICAgICAgfSwKICAgICAgICAgICJxdWFudGl0eSI6IDEsCiAgICAgICAgICAicXVhbnRpdHlfZGVjaW1hbCI6ICIxIiwKICAgICAgICAgICJzdWJ0b3RhbCI6IDk5MDAsCiAgICAgICAgICAidGF4ZXMiOiBbXQogICAgICAgIH0KICAgICAgXSwKICAgICAgImhhc19tb3JlIjogZmFsc2UsCiAgICAgICJ0b3RhbF9jb3VudCI6IDEsCiAgICAgICJ1cmwiOiAiL3YxL2ludm9pY2VzL2luXzFUeHMyTUhZYlRueEIwU1BKeXZTbnV6ZC9saW5lcyIKICAgIH0sCiAgICAibGl2ZW1vZGUiOiBmYWxzZSwKICAgICJtZXRhZGF0YSI6IHt9LAogICAgIm5leHRfcGF5bWVudF9hdHRlbXB0IjogbnVsbCwKICAgICJudW1iZXIiOiAiWklZR09LQzAtMDAwMSIsCiAgICAib25fYmVoYWxmX29mIjogbnVsbCwKICAgICJwYXJlbnQiOiB7CiAgICAgICJxdW90ZV9kZXRhaWxzIjogbnVsbCwKICAgICAgInN1YnNjcmlwdGlvbl9kZXRhaWxzIjogewogICAgICAgICJtZXRhZGF0YSI6IHt9LAogICAgICAgICJzdWJzY3JpcHRpb24iOiAic3ViXzFUeHMyTUhZYlRueEIwU1BtR1dkbzFCdiIKICAgICAgfSwKICAgICAgInR5cGUiOiAic3Vic2NyaXB0aW9uX2RldGFpbHMiCiAgICB9LAogICAgInBheW1lbnRfc2V0dGluZ3MiOiB7CiAgICAgICJkZWZhdWx0X21hbmRhdGUiOiBudWxsLAogICAgICAicGF5bWVudF9tZXRob2Rfb3B0aW9ucyI6IG51bGwsCiAgICAgICJwYXltZW50X21ldGhvZF90eXBlcyI6IG51bGwKICAgIH0sCiAgICAicGVyaW9kX2VuZCI6IDE3ODUxNzIxOTgsCiAgICAicGVyaW9kX3N0YXJ0IjogMTc4NTE3MjE5OCwKICAgICJwb3N0X3BheW1lbnRfY3JlZGl0X25vdGVzX2Ftb3VudCI6IDAsCiAgICAicHJlX3BheW1lbnRfY3JlZGl0X25vdGVzX2Ftb3VudCI6IDAsCiAgICAicmVjZWlwdF9udW1iZXIiOiBudWxsLAogICAgInJlbmRlcmluZyI6IG51bGwsCiAgICAic2hpcHBpbmdfY29zdCI6IG51bGwsCiAgICAic2hpcHBpbmdfZGV0YWlscyI6IG51bGwsCiAgICAic3RhcnRpbmdfYmFsYW5jZSI6IDAsCiAgICAic3RhdGVtZW50X2Rlc2NyaXB0b3IiOiBudWxsLAogICAgInN0YXR1cyI6ICJwYWlkIiwKICAgICJzdGF0dXNfdHJhbnNpdGlvbnMiOiB7CiAgICAgICJmaW5hbGl6ZWRfYXQiOiAxNzg1MTcyMTk4LAogICAgICAibWFya2VkX3VuY29sbGVjdGlibGVfYXQiOiBudWxsLAogICAgICAicGFpZF9hdCI6IDE3ODUxNzIxOTgsCiAgICAgICJ2b2lkZWRfYXQiOiBudWxsCiAgICB9LAogICAgInN1YnRvdGFsIjogOTkwMCwKICAgICJzdWJ0b3RhbF9leGNsdWRpbmdfdGF4IjogOTkwMCwKICAgICJ0ZXN0X2Nsb2NrIjogbnVsbCwKICAgICJ0b3RhbCI6IDk5MDAsCiAgICAidG90YWxfZGlzY291bnRfYW1vdW50cyI6IFtdLAogICAgInRvdGFsX2V4Y2x1ZGluZ190YXgiOiA5OTAwLAogICAgInRvdGFsX3ByZXRheF9jcmVkaXRfYW1vdW50cyI6IFtdLAogICAgInRvdGFsX3RheGVzIjogW10sCiAgICAid2ViaG9va3NfZGVsaXZlcmVkX2F0IjogMTc4NTE3MjE5OAogIH0sCiAgImxpdmVtb2RlIjogZmFsc2UsCiAgIm1hbmFnZWRfcGF5bWVudHMiOiB7CiAgICAiZW5hYmxlZCI6IGZhbHNlCiAgfSwKICAibWV0YWRhdGEiOiB7fSwKICAibmV4dF9wZW5kaW5nX2ludm9pY2VfaXRlbV9pbnZvaWNlIjogbnVsbCwKICAib25fYmVoYWxmX29mIjogbnVsbCwKICAicGF1c2VfY29sbGVjdGlvbiI6IG51bGwsCiAgInBheW1lbnRfc2V0dGluZ3MiOiB7CiAgICAicGF5bWVudF9tZXRob2Rfb3B0aW9ucyI6IG51bGwsCiAgICAicGF5bWVudF9tZXRob2RfdHlwZXMiOiBudWxsLAogICAgInNhdmVfZGVmYXVsdF9wYXltZW50X21ldGhvZCI6ICJvZmYiCiAgfSwKICAicGVuZGluZ19pbnZvaWNlX2l0ZW1faW50ZXJ2YWwiOiBudWxsLAogICJwZW5kaW5nX3NldHVwX2ludGVudCI6IG51bGwsCiAgInBlbmRpbmdfdXBkYXRlIjogbnVsbCwKICAicGxhbiI6IHsKICAgICJpZCI6ICJwcmljZV8xVHhzMkxIWWJUbnhCMFNQWXFQSE1rb3EiLAogICAgIm9iamVjdCI6ICJwbGFuIiwKICAgICJhY3RpdmUiOiB0cnVlLAogICAgImFtb3VudCI6IDk5MDAsCiAgICAiYW1vdW50X2RlY2ltYWwiOiAiOTkwMCIsCiAgICAiYmlsbGluZ19zY2hlbWUiOiAicGVyX3VuaXQiLAogICAgImNyZWF0ZWQiOiAxNzg1MTcyMTk3LAogICAgImN1cnJlbmN5IjogImJybCIsCiAgICAiaW50ZXJ2YWwiOiAibW9udGgiLAogICAgImludGVydmFsX2NvdW50IjogMSwKICAgICJsaXZlbW9kZSI6IGZhbHNlLAogICAgIm1ldGFkYXRhIjoge30sCiAgICAibWV0ZXIiOiBudWxsLAogICAgIm5pY2tuYW1lIjogbnVsbCwKICAgICJwcm9kdWN0IjogInByb2RfVXhuZEFjczkxU3E5RHoiLAogICAgInRpZXJzX21vZGUiOiBudWxsLAogICAgInRyYW5zZm9ybV91c2FnZSI6IG51bGwsCiAgICAidHJpYWxfcGVyaW9kX2RheXMiOiBudWxsLAogICAgInVzYWdlX3R5cGUiOiAibGljZW5zZWQiCiAgfSwKICAicXVhbnRpdHkiOiAxLAogICJzY2hlZHVsZSI6IG51bGwsCiAgInN0YXJ0X2RhdGUiOiAxNzg1MTcyMTk4LAogICJzdGF0dXMiOiAiYWN0aXZlIiwKICAidGVzdF9jbG9jayI6IG51bGwsCiAgInRyYW5zZmVyX2RhdGEiOiBudWxsLAogICJ0cmlhbF9lbmQiOiBudWxsLAogICJ0cmlhbF9zZXR0aW5ncyI6IHsKICAgICJlbmRfYmVoYXZpb3IiOiB7CiAgICAgICJtaXNzaW5nX3BheW1lbnRfbWV0aG9kIjogImNyZWF0ZV9pbnZvaWNlIgogICAgfQogIH0sCiAgInRyaWFsX3N0YXJ0IjogbnVsbAp9
+  recorded_at: Mon, 27 Jul 2026 17:10:00 GMT
+recorded_with: VCR 6.4.0

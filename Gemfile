@@ -67,4 +67,5 @@ group :test do
   # Mocks e gravação de chamadas HTTP para o Stripe
   gem 'webmock'
   gem 'vcr'
+  gem 'shoulda-matchers', '~> 6.0'
 end
